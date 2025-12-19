@@ -1,0 +1,16 @@
+.discord-btn {
+  display: block;
+  margin-top: 12px;
+  padding: 10px;
+  text-align: center;
+  background: #5865F2;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.discord-btn:hover {
+  background: #4752c4;
+}
