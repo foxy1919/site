@@ -92,24 +92,23 @@ setInterval(checkStatus, 10000);
 </body>
 </html>
 <script>
-async function checkVPS() {
-  const s = document.getElementById("serverStatus");
+function checkServer() {
+  const status = document.getElementById("serverStatus");
+  const img = new Image();
 
-  try {
-    await fetch("http://IP_DA_SUA_VPS", { mode: "no-cors" });
-    s.innerText = "ONLINE";
-    s.style.color = "lime";
-  } catch {
-    s.innerText = "OFFLINE";
-    s.style.color = "red";
-  }
-}
+  img.onload = function () {
+    status.innerText = "ONLINE";
+    status.style.color = "lime";
+  };
 
-checkVPS();
-setInterval(checkVPS, 10000);
-</script>
+  img.onerror = function () {
+    status.innerText = "OFFLINE";
+    status.style.color = "red";
+  };
+
+  img.src = "http://IP_DA_SUA_VPS/?t=" + new Date().getTime();
 }
 
 checkServer();
-setInterval(checkServer, 10000); // atualiza a cada 10s
+setInterval(checkServer, 10000);
 </script>
