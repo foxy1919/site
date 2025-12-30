@@ -53,9 +53,9 @@ button {
   <input id="pass" type="password" placeholder="Senha">
   <button onclick="login()">Entrar</button>
 
-  <div id="status" class="status">Verificando status...</div>
-</div>
-
+<p class="status">
+  Servidor: <span id="serverStatus">Verificando...</span>
+</p>
 <script>
 const VPS_IP = "159.65.30.217";
 
@@ -91,4 +91,20 @@ setInterval(checkStatus, 10000);
 </a>
 </body>
 </html>
+<script>
+async function checkServer() {
+  const statusEl = document.getElementById("serverStatus");
 
+  try {
+    await fetch("http://SEU_IP_DA_VPS:30120", { mode: "no-cors" });
+    statusEl.innerHTML = "ONLINE";
+    statusEl.style.color = "lime";
+  } catch (e) {
+    statusEl.innerHTML = "OFFLINE";
+    statusEl.style.color = "red";
+  }
+}
+
+checkServer();
+setInterval(checkServer, 10000); // atualiza a cada 10s
+</script>
