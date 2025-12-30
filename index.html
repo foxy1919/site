@@ -92,17 +92,22 @@ setInterval(checkStatus, 10000);
 </body>
 </html>
 <script>
-async function checkServer() {
-  const statusEl = document.getElementById("serverStatus");
+async function checkVPS() {
+  const s = document.getElementById("serverStatus");
 
   try {
-    await fetch("http://SEU_IP_DA_VPS:30120", { mode: "no-cors" });
-    statusEl.innerHTML = "ONLINE";
-    statusEl.style.color = "lime";
-  } catch (e) {
-    statusEl.innerHTML = "OFFLINE";
-    statusEl.style.color = "red";
+    await fetch("http://IP_DA_SUA_VPS", { mode: "no-cors" });
+    s.innerText = "ONLINE";
+    s.style.color = "lime";
+  } catch {
+    s.innerText = "OFFLINE";
+    s.style.color = "red";
   }
+}
+
+checkVPS();
+setInterval(checkVPS, 10000);
+</script>
 }
 
 checkServer();
